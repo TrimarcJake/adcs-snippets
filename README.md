@@ -10,4 +10,5 @@ certutil -getreg CA\AuditFilter
 ````
 certutil –setreg CA\AuditFilter 127
 net stop certsvc
+net start certsvc
 ````
