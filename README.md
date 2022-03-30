@@ -3,17 +3,17 @@ Just a bunch of code snippets to identify and remediate common Active Directory 
 
 ## Common Misconfiguration #1: Insufficient Auditing
 ### Check current configuration
-````
+```powershell
 certutil -getreg CA\AuditFilter
 ````
 ### Enable all auditing
-````
+```powershell
 certutil –setreg CA\AuditFilter 127
 net stop certsvc
 net start certsvc
-````
-## Common Misconfiguration #3: Unsafe Ownership
 ```
+## Common Misconfiguration #3: Unsafe Ownership
+```powershell
 $ADRoot = (Get-ADRootDSE).rootDomainNamingContext
 $Safe_Owners = "Enterprise Admins|Domain Admins|Administrators"
 
