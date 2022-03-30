@@ -15,14 +15,10 @@ net start certsvc
 ## Common Misconfiguration #3: Unsafe Ownership
 ```powershell
 $ADRoot = (Get-ADRootDSE).rootDomainNamingContext
+
 $Safe_Owners = "Enterprise Admins|Domain Admins|Administrators"
 
-$ADCS_Objects = Get-ADObject -Filter * -SearchBase 
-	"CN=Public Key Services,CN=Services,CN=Configuration,$ADRoot"
-    -SearchScope 2 -Properties *
+$ADCS_Objects = Get-ADObject -Filter * -SearchBase "CN=Public Key Services,CN=Services,CN=Configuration,$ADRoot" -SearchScope 2 -Properties *
 
-$ADCS_Objects | Where-Object {
-    $_.nTSecurityDescriptor.Owner -notmatch $Safe_Owners } |
-    Format-Table Name,DistinguishedName
-}
+$ADCS_Objects | Where-Object { $_.nTSecurityDescriptor.Owner -notmatch $Safe_Owners } | Format-Table Name,DistinguishedName
 ```
