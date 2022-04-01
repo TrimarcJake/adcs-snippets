@@ -16,14 +16,17 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertSvc\Configuration\horse
 CertUtil: -getreg command completed successfully.
 ```
 
-
-### Enable all auditing
+#### Enable all auditing
 ```powershell
 certutil –setreg CA\AuditFilter 127
 net stop certsvc
 net start certsvc
 ```
-## Common Misconfiguration #3: Unsafe Ownership
+
+### Common Misconfiguration #2: Single-Tier Architecture
+Wonderful guide by Pete Long on building a two-tier PKI: https://www.petenetlive.com/KB/Article/0001309
+
+### Common Misconfiguration #3: Unsafe Ownership
 ```powershell
 $ADRoot = (Get-ADRootDSE).rootDomainNamingContext
 
