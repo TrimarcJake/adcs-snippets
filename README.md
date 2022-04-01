@@ -1,11 +1,22 @@
 # adcs-snippets
 Just a bunch of code snippets to identify and remediate common Active Directory Certificate Services issues.
 
-## Common Misconfiguration #1: Insufficient Auditing
-### Check current configuration
+## Common Misconfigurations
+### Common Misconfiguration #1: Insufficient Auditing
+#### Check current configuration
 ```powershell
 certutil -getreg CA\AuditFilter
 ````
+
+If you receive a result like the following, auditing is not enabled:
+```command
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertSvc\Configuration\horse-CA1-CA-1\AuditFilter:
+
+  AuditFilter REG_DWORD = 0
+CertUtil: -getreg command completed successfully.
+```
+
+
 ### Enable all auditing
 ```powershell
 certutil –setreg CA\AuditFilter 127
