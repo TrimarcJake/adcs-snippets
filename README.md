@@ -9,7 +9,7 @@ certutil -getreg CA\AuditFilter
 ````
 
 If you receive a result like the following, auditing is not enabled:
-```command
+```batch
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertSvc\Configuration\horse-CA1-CA-1\AuditFilter:
 
   AuditFilter REG_DWORD = 0
