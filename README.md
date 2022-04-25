@@ -58,7 +58,7 @@ $ADCS_Objects_BadOwner | ForEach-Object {
 ## Dangerous Misconfiguration #1: Unsafe ACLs
 ### Find Objects with Dangerous ACLs
 
-## Dangerous Misconfiguration #2:Templates with Bad Configs
+## Dangerous Misconfiguration #2: Templates with Bad Configs
 ### Find Templates with Bad Configs
 ```powershell
 $ClientAuthEKUs = "1\.3\.6\.1\.5\.5\.7\.3\.2|
@@ -105,7 +105,7 @@ $ADCS_Objects_BadConfig | ForEach-Object {
 }
 ```
 
-## Dangerous Misconfiguration #3:Dangerous Flag on CA
+## Dangerous Misconfiguration #3: Dangerous Flag on CA
 ### Unset the Dangerous Flag
 ```powershell
 certutil -setreg policy\EditFlags -EDITF_ATTRIBUTESUBJECTALTNAME2
