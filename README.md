@@ -90,7 +90,7 @@ $ADCS_Objects_BadConfig | ForEach-Object {
 }
 ```
 
-### Fix #2 for Templates with Bad Configs - Require Manager Approval
+### Fix #2 for Templates with Bad Configs - Require Manager Approval (generally less impactful)
 ```powershell
 $ADCS_Objects_BadConfig = $ADCS_Objects | Where-Object {
     ($_.ObjectClass -eq "pKICertificateTemplate") -and
@@ -106,6 +106,11 @@ $ADCS_Objects_BadConfig | ForEach-Object {
 ```
 
 ## Dangerous Misconfiguration #3: Dangerous Flag on CA
+### Check if the Flag is Set
+```powershell
+certutil -getreg policy\EditFlags
+```
+
 ### Unset the Dangerous Flag
 ```powershell
 certutil -setreg policy\EditFlags -EDITF_ATTRIBUTESUBJECTALTNAME2
