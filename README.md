@@ -74,6 +74,8 @@ foreach ( $object in $ADCS Objects ) {
     }
 }
 ```
+*Note: This snippet is very simple will likely return some false positives. CAs, PKI Admin users/groups, and other safe entities may end up in the results. This list should be a starting point for future investigation.*
+
 ## Dangerous Misconfiguration #2: Templates with Bad Configs
 ### Find Templates with Bad Configs
 ```powershell
