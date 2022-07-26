@@ -64,9 +64,9 @@ $Safe_Users = "Domain Admins|Enterprise Admins BUILTIN\\Administrators NT AUTHOR
 
 $DangerousRights = "GenericAll|WriteDacl|WriteOwner"
 
-foreach ( $object in $ADCS Objects ) {
+foreach ( $object in $ADCS_Objects ) {
     $BadACE = $object.nTSecurityDescriptor.Access | Where-Object {
-        ( $.IdentityReference -notmatch $Safe Users ) -and ( $_.ActiveDirectoryRights -match $DangerousRights )
+        ( $.IdentityReference -notmatch $Safe_Users ) -and ( $_.ActiveDirectoryRights -match $DangerousRights )
     }
     if ( $BadACE ) {
         Write-Host "Object: $object" -ForegroundColor Red
