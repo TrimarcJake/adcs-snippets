@@ -59,7 +59,21 @@ $ADCS_Objects_BadOwner | ForEach-Object {
 
 ## Dangerous Misconfiguration #1: Unsafe ACLs
 ### Find Objects with Dangerous ACLs
+```powershell
+$Safe_Users = "Domain Admins|Enterprise Admins BUILTIN\\Administrators NT AUTHORITY\\SYSTEM|$env:userdomain\\Cert Publishers|$env:userdomain\\Administrator"
 
+$DangerousRights = "GenericAll|WriteDacl|WriteOwner"
+
+foreach ( $object in $ADCS Objects ) {
+    $BadACE = $object.nTSecurityDescriptor.Access | Where-Object {
+        ( $.IdentityReference -notmatch $Safe Users ) -and ( $_.ActiveDirectoryRights -match $DangerousRights )
+    }
+    if ( $BadACE ) {
+        Write-Host "Object: $object" -ForegroundColor Red
+        $BadACE
+    }
+}
+```
 ## Dangerous Misconfiguration #2: Templates with Bad Configs
 ### Find Templates with Bad Configs
 ```powershell
