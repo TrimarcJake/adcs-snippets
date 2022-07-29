@@ -39,10 +39,10 @@ $ADCS_Objects | Where-Object {
 } | Format-Table Name,DistinguishedName
 ```
 
-### Reset Owner to "Domain Admins"
+### Reset Owner to "Enterprise Admins"
 ```powershell
 $DNSRoot = (Get-ADDomain).DNSRoot
-$StandardOwner = New-Object System.Security.Principal.NTAccount($DNSRoot, "Domain Admins")
+$StandardOwner = New-Object System.Security.Principal.NTAccount($DNSRoot, "Enterprise Admins")
 
 $ADCS_Objects_BadOwner = $ADCS_Objects | Where-Object {
     $_.nTSecurityDescriptor.Owner -notmatch $Safe_Owners
