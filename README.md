@@ -22,6 +22,10 @@ net stop certsvc
 net start certsvc
 ```
 
+Notes:
+  - These snippets must be run on each CA host individually.
+  - Fully enabling auditing requires 2 additional GPO settings to be configured.
+
 ## Common Misconfiguration #2: Single-Tier Architecture
 Wonderful guide by Pete Long on building a two-tier PKI: https://www.petenetlive.com/KB/Article/0001309
 
