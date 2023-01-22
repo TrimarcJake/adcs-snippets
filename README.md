@@ -54,7 +54,6 @@ $ADCS_Objects_BadOwner = $ADCS_Objects | Where-Object {
 
 $ADCS_Objects_BadOwner | ForEach-Object {
     $ObjectPath = "AD:$($_.DistinguishedName)"
-    $ObjectCN = $_.CanonicalName
     $ACL = Get-Acl -Path $ObjectPath
     $ACL.SetOwner($StandardOwner)
     Set-ACL -Path $ObjectPath -AclObject $ACL
