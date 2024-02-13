@@ -90,8 +90,8 @@ $ClientAuthEKUs = "1\.3\.6\.1\.5\.5\.7\.3\.2|
 $ADCS_Objects | Where-Object {
     ($_.ObjectClass -eq "pKICertificateTemplate") -and
     ($_.pkiExtendedKeyUsage -match $ClientAuthEKUs) -and
-    ($_."msPKI-Certificate-Name-Flag" -eq 1) -and
-    ($_."msPKI-Enrollment-Flag" -ne 2) -and
+    ($_."msPKI-Certificate-Name-Flag" -band 1) -and
+    !($_.'msPKI-Enrollment-Flag' -band 2) -and
     ( ($_."msPKI-RA-Signature" -eq 0) -or ($null -eq $_."msPKI-RA-Signature") )
 } | Format-Table Name,DistinguishedName
 ```
@@ -101,8 +101,8 @@ $ADCS_Objects | Where-Object {
 $ADCS_Objects_BadConfig = $ADCS_Objects | Where-Object {
     ($_.ObjectClass -eq "pKICertificateTemplate") -and
     ($_.pkiExtendedKeyUsage -match $ClientAuthEKUs) -and
-    ($_."msPKI-Certificate-Name-Flag" -eq 1) -and
-    ($_."msPKI-Enrollment-Flag" -ne 2) -and
+    ($_."msPKI-Certificate-Name-Flag" -band 1) -and
+    !($_.'msPKI-Enrollment-Flag' -band 2) -and
     ( ($_."msPKI-RA-Signature" -eq 0) -or ($null -eq $_."msPKI-RA-Signature") )
 }
 
@@ -116,8 +116,8 @@ $ADCS_Objects_BadConfig | ForEach-Object {
 $ADCS_Objects_BadConfig = $ADCS_Objects | Where-Object {
     ($_.ObjectClass -eq "pKICertificateTemplate") -and
     ($_.pkiExtendedKeyUsage -match $ClientAuthEKUs) -and
-    ($_."msPKI-Certificate-Name-Flag" -eq 1) -and
-    ($_."msPKI-Enrollment-Flag" -ne 2) -and
+    ($_."msPKI-Certificate-Name-Flag" -band 1) -and
+    !($_.'msPKI-Enrollment-Flag' -band 2) -and
     ( ($_."msPKI-RA-Signature" -eq 0) -or ($null -eq $_."msPKI-RA-Signature") )
 }
 
